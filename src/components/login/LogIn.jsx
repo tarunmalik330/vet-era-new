@@ -12,8 +12,8 @@ const LogIn = () => {
         <h1 className="font-titillium text-blue-950 text-5xl lg:text-6xl xl:text-8xl font-semibold tracking-[1px] text-center mb-5 md:mb-7">
           VetEra
         </h1>
-        <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-blue-950 font-titillium font-semibold leading-[120%] text-center">
-          Welcome Back <br /> to VetEra
+        <p className="text-xl typewriter-text sm:text-2xl md:text-3xl lg:text-5xl text-blue-950 font-titillium font-semibold leading-[120%] text-center">
+          Welcome Back to VetEra
         </p>
         <div className="space-y-4 mt-10">
           <CustomInput
