@@ -11,11 +11,14 @@ const Header = () => {
   };
 
   return (
-    <header className="py-5">
+    <header className="py-5 shadow">
       <div className="container xl:max-w-[1140px] 2xl:max-w-[1440px] mx-auto xl:px-0 px-5 w-full">
         <nav className="flex items-center justify-between">
-          <Link href="/" className="relative z-10">
-            <p>VetEra</p>
+          <Link
+            href="/"
+            className="relative z-10 font-titillium font-medium text-xl"
+          >
+            VetEra
           </Link>
           <div
             className={`flex items-center md:flex-row flex-col md:static fixed duration-300 md:h-auto  ${
@@ -31,7 +34,7 @@ const Header = () => {
                     <Link
                       onClick={() => setIsOpen(false)}
                       href={obj.href}
-                      className="text-black font-medium !leading-[150%] capitalize md:text-lg text-[4vw] relative nav_link"
+                      className="text-black font-medium font-titillium !leading-[150%] capitalize md:text-lg text-[4vw] relative nav_link"
                     >
                       {obj.link}
                     </Link>

@@ -2,20 +2,20 @@ import React from "react";
 
 const Services = () => {
   return (
-    <div className="mt-12">
+    <div className="md:mt-20 mt-10">
       <div className="container xl:max-w-[1140px] 2xl:max-w-[1440px] w-full xl:px-0 px-5 mx-auto">
-        <h1 className="text-3xl font-bold mb-2 text-center">
+        <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-semibold mb-2 text-center text-blue-950 font-titillium">
           Welcome to VetEra
         </h1>
-        <p className="text-gray-600 mb-6 text-center">
+        <p className="text-gray-600 mb-6 text-center text-base md:text-lg xl:text-xl">
           Your all-in-one platform for pet care
         </p>
 
         <div className="flex gap-4 md:mb-12 mb-8 justify-center flex-wrap">
-          <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+          <button className="bg-blue-950 text-white hover:text-black cursor-pointer px-6 py-1 rounded hover:bg-transparent transition border border-transparent hover:border-blue-950">
             Schedule Appointment
           </button>
-          <button className="bg-white text-black hover:text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+          <button className="bg-white text-black hover:text-white px-6 py-2 rounded cursor-pointer hover:bg-blue-950 transition">
             View Appointments
           </button>
         </div>
@@ -63,7 +63,7 @@ const Services = () => {
               key={item.title}
               className="bg-white md:p-5 p-6 rounded shadow hover:shadow-md transition cursor-pointer"
             >
-              <h3 className="font-semibold md:text-xl text-lg mb-4 text-center text-black">
+              <h3 className="font-semibold md:text-xl text-lg mb-4 text-center text-blue-950">
                 {item.title}
               </h3>
               <p className="text-gray-600 md:text-base text-sm text-center">{item.desc}</p>
