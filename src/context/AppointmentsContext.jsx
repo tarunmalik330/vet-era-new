@@ -1,22 +1,34 @@
-// "use client";
-// import React, { createContext, useState, useContext } from "react";
+"use client"
+// context/AppointmentContext.js
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-// const AppointmentsContext = createContext();
+const AppointmentContext = createContext();
 
-// export function AppointmentsProvider({ children }) {
-//   const [appointments, setAppointments] = useState([]);
+export const useAppointments = () => useContext(AppointmentContext);
 
-//   function addAppointment(appointment) {
-//     setAppointments([...appointments, appointment]);
-//   }
+export const AppointmentProvider = ({ children }) => {
+  const [appointments, setAppointments] = useState([]);
 
-//   return (
-//     <AppointmentsContext.Provider value={{ appointments, addAppointment }}>
-//       {children}
-//     </AppointmentsContext.Provider>
-//   );
-// }
+  // Load from localStorage when component mounts
+  useEffect(() => {
+    const storedAppointments = localStorage.getItem("appointments");
+    if (storedAppointments) {
+      setAppointments(JSON.parse(storedAppointments));
+    }
+  }, []);
 
-// export function useAppointments() {
-//   return useContext(AppointmentsContext);
-// }
+  // Save to localStorage whenever appointments change
+  useEffect(() => {
+    localStorage.setItem("appointments", JSON.stringify(appointments));
+  }, [appointments]);
+
+  const addAppointment = (appointment) => {
+    setAppointments((prev) => [...prev, appointment]);
+  };
+
+  return (
+    <AppointmentContext.Provider value={{ appointments, addAppointment }}>
+      {children}
+    </AppointmentContext.Provider>
+  );
+};

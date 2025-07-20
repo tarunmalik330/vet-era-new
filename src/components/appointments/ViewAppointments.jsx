@@ -1,24 +1,9 @@
+"use client"
+import { useAppointments } from "@/context/AppointmentsContext";
 import React from "react";
 
 const ViewAppointments = () => {
-  const appointments = [
-    {
-      pet: "Buddy",
-      vet: "Dr. Sharma",
-      date: "2025-07-22",
-      time: "10:30 AM",
-      concern: "Skin Allergy",
-      status: "Confirmed",
-    },
-    {
-      pet: "Lucy",
-      vet: "Dr. Mehta",
-      date: "2025-07-25",
-      time: "03:00 PM",
-      concern: "Regular Checkup",
-      status: "Pending",
-    },
-  ];
+  const {appointments }= useAppointments();
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
