@@ -1,3 +1,5 @@
+import { SERVICES_LIST } from "@/utils/helper";
+import Link from "next/link";
 import React from "react";
 
 const Services = () => {
@@ -12,53 +14,22 @@ const Services = () => {
         </p>
 
         <div className="flex gap-4 md:mb-12 mb-8 justify-center flex-wrap">
-          <button className="bg-blue-950 text-white hover:text-black cursor-pointer px-6 py-1 rounded hover:bg-transparent transition border border-transparent hover:border-blue-950">
+          <Link
+            href="/appointments/schedule-appoinment"
+            className="bg-blue-950 text-white hover:text-black cursor-pointer px-6 py-2 rounded hover:bg-transparent transition border border-transparent hover:border-blue-950 text-sm md:text-base sm:py-1 duration-300"
+          >
             Schedule Appointment
-          </button>
-          <button className="bg-white text-black hover:text-white px-6 py-2 rounded cursor-pointer hover:bg-blue-950 transition">
+          </Link>
+          <Link
+            href="/appointments/view-appoinment"
+            className="bg-white text-black hover:text-white px-6 py-2 rounded cursor-pointer hover:bg-blue-950 transition text-sm md:text-base sm:py-1 duration-300"
+          >
             View Appointments
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {[
-            {
-              title: "Health Monitoring",
-              desc: "Track your pet’s health and vital signs over time.",
-            },
-            {
-              title: "Exercise Tracking",
-              desc: "Monitor your pet’s activity levels and movement.",
-            },
-            {
-              title: "Pet Services",
-              desc: "Find grooming, boarding, and veterinary options nearby.",
-            },
-            {
-              title: "Training Tips",
-              desc: "Get AI-based expert advice for training and behavior.",
-            },
-            {
-              title: "Chat with Vet",
-              desc: "Video or text consultation with licensed veterinarians.",
-            },
-            {
-              title: "Adoption",
-              desc: "Browse pets for adoption and join adoption drives.",
-            },
-            {
-              title: "Community",
-              desc: "Discuss, share, and connect with other pet lovers.",
-            },
-            {
-              title: "Upcoming Reminders",
-              desc: "Vaccination, food delivery, and vet visit alerts.",
-            },
-            {
-              title: "Emergency",
-              desc: "Get emergency alerts and quick access to help.",
-            },
-          ].map((item) => (
+          {SERVICES_LIST.map((item) => (
             <div
               key={item.title}
               className="bg-white md:p-5 p-6 rounded shadow hover:shadow-md transition cursor-pointer"
@@ -66,7 +37,9 @@ const Services = () => {
               <h3 className="font-semibold md:text-xl text-lg mb-4 text-center text-blue-950">
                 {item.title}
               </h3>
-              <p className="text-gray-600 md:text-base text-sm text-center">{item.desc}</p>
+              <p className="text-gray-600 md:text-base text-sm text-center">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>

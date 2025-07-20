@@ -1,6 +1,5 @@
 "use client";
 import { NAV_LINKS_LIST } from "@/utils/helper";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -8,15 +7,21 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    if (!isOpen) {
+      document.body.classList.add("max-md:overflow-hidden");
+    } else {
+      document.body.classList.remove("max-md:overflow-hidden");
+    }
+    return;
   };
 
   return (
-    <header className="py-5 shadow">
+    <header className="md:py-5 py-2 shadow">
       <div className="container xl:max-w-[1140px] 2xl:max-w-[1440px] mx-auto xl:px-0 px-5 w-full">
         <nav className="flex items-center justify-between">
           <Link
             href="/"
-            className="relative z-10 font-titillium font-medium text-xl"
+            className="relative z-10 font-titillium font-bold text-xl md:text-3xl"
           >
             VetEra
           </Link>
@@ -45,7 +50,7 @@ const Header = () => {
           </div>
           <button
             onClick={toggleMenu}
-            className="flex flex-col items-center justify-center w-10 h-10 focus:outline-none md:hidden"
+            className="flex flex-col items-center justify-center w-10 h-10 focus:outline-none md:hidden cursor-pointer"
           >
             <span
               className={`block w-6 h-0.5 bg-black transition-transform duration-300 ${
