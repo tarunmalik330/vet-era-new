@@ -18,8 +18,10 @@
   --leading-100: 100%;
   --text-13: 13px;
 }
-.nav_link {
-  @apply after:absolute after:w-full sm:after:h-0.5 after:h-px after:bg-blue-950 after:-bottom-1 after:left-0 after:transform after:scale-x-0 after:transition-transform after:duration-300 after:hover:scale-x-100;
+@layer components {
+  .nav_link {
+    @apply relative after:absolute after:w-full sm:after:h-0.5 after:h-px after:bg-blue-950 after:-bottom-1 after:left-0 after:transform after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100;
+  }
 }
 body {
   font-family: "Inter", sans-serif;
