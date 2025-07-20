@@ -1,7 +1,12 @@
+import SignUp from "@/components/signup/SignUp";
 import React from "react";
 
 const page = () => {
-  return <div className="text-5xl text-blue-500 text-center">Sign Up Page</div>;
+  return (
+    <div>
+      <SignUp />
+    </div>
+  );
 };
 
 export default page;

@@ -30,7 +30,7 @@ const LogIn = () => {
           />
         </div>
 
-        <button className="mt-6 w-full py-3 bg-dark-blue cursor-pointer text-white font-semibold rounded-md hover:bg-dark-blue/90 font-titillium text-lg sm:text-xl md:text-2xl tracking-[1px] transition">
+        <button className="mt-6 w-full py-3 bg-dark-blue cursor-pointer text-white font-medium rounded-md hover:bg-dark-blue/90 font-titillium text-lg sm:text-xl md:text-2xl tracking-[1px] transition">
           Login
         </button>
 
