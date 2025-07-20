@@ -9,7 +9,7 @@ export const NAV_LINKS_LIST = [
   },
   {
     link: "Appointments",
-    href: "/appointments/view-appoinment",
+    href: "/appointments/view-appointment",
   },
   {
     link: "features",

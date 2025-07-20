@@ -15,13 +15,13 @@ const Services = () => {
 
         <div className="flex gap-4 md:mb-12 mb-8 justify-center flex-wrap">
           <Link
-            href="/appointments/schedule-appoinment"
+            href="/appointments/schedule-appointment"
             className="bg-blue-950 text-white hover:text-black cursor-pointer px-6 py-2 rounded hover:bg-transparent transition border border-transparent hover:border-blue-950 text-sm md:text-base sm:py-1 duration-300"
           >
             Schedule Appointment
           </Link>
           <Link
-            href="/appointments/view-appoinment"
+            href="/appointments/view-appointment"
             className="bg-white text-black hover:text-white px-6 py-2 rounded cursor-pointer hover:bg-blue-950 transition text-sm md:text-base sm:py-1 duration-300"
           >
             View Appointments
