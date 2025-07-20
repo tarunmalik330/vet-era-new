@@ -1,5 +1,4 @@
 "use client"
-// context/AppointmentContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const AppointmentContext = createContext();
