@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -10,9 +11,16 @@
   --color-black-800: #383838;
   --color-black-900: #1e1e1e;
   --color-dark-black: #181725;
+  --color-dark-blue: #001f3f;
   --color-red: #fc3030;
   --color-orange: #ec6d1d;
   --color-off-white: #f3f3f3;
   --leading-100: 100%;
   --text-13: 13px;
+}
+body {
+  font-family: "Inter", sans-serif;
+}
+.font-titillium {
+  font-family: "Titillium Web", sans-serif;
 }

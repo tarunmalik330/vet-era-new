@@ -1,9 +1,12 @@
-import React from 'react'
+import LogIn from "@/components/login/LogIn";
+import React from "react";
 
 const page = () => {
   return (
-    <div className='text-5xl text-blue-500 text-center'>Login Page</div>
-  )
-}
+    <div>
+      <LogIn />
+    </div>
+  );
+};
 
-export default page
+export default page;
