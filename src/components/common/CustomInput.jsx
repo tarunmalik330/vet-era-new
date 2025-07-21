@@ -3,19 +3,18 @@ import React from "react";
 const CustomInput = ({
   type = "text",
   placeholder,
-  value,
-  onChange,
   lable = "",
+  ref,
+  ...rest
 }) => {
   return (
     <div className="flex flex-col gap-2">
       <label className="block font-medium text-lg">{lable}</label>
       <input
-        type={type}
+       type={type}
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        required
+        ref={ref}
+        {...rest}
         className="w-full px-4 py-2 sm:py-3 rounded-md border border-gray-300 text-dark-blue placeholder:text-dark-blue font-medium placeholder:fomt-medium text-lg placeholder:text-lg focus:outline-none"
       />
     </div>
