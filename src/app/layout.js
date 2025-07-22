@@ -14,14 +14,14 @@ export const metadata = {
     "Vet Appointments",
     "Animal Health",
   ],
-  authors: [{ name: "VetEra Team", url: "https://vetera.com" }],
+  authors: [{ name: "VetEra Team", url: "https://vet-era-new.vercel.app/" }],
   creator: "VetEra",
-  metadataBase: new URL("https://vetera.com"),
+  metadataBase: new URL("https://vet-era-new.vercel.app/"),
   openGraph: {
     title: "VetEra – Your Pet's Health Companion",
     description:
       "Easily manage your pet’s health and appointments with VetEra.",
-    url: "https://vetera.com",
+    url: "https://vet-era-new.vercel.app/",
     siteName: "VetEra",
     locale: "en_US",
     type: "website",
