@@ -3,7 +3,7 @@ import React from "react";
 import { useAppointments } from "@/context/AppointmentsContext";
 import Image from "next/image";
 
-const ViewAppointments = () => {
+const Book = () => {
   const { appointments } = useAppointments();
   const latest = appointments[appointments.length - 1];
 
@@ -56,4 +56,4 @@ const ViewAppointments = () => {
   );
 };
 
-export default ViewAppointments;
+export default Book;
