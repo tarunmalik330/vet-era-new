@@ -19,11 +19,8 @@ const Header = () => {
     <header className="md:py-5 py-2 shadow">
       <div className="container xl:max-w-[1140px] 2xl:max-w-[1440px] mx-auto xl:px-0 px-5 w-full">
         <nav className="flex items-center justify-between">
-          <Link
-            href="/"
-            className="relative z-10 font-titillium font-bold text-xl md:text-3xl"
-          >
-            VetEra
+          <Link href="/" className="relative">
+            <img src="/assets/images/png/logo.png" alt="logo" width={60} height={50} />
           </Link>
           <div
             className={`flex items-center md:flex-row flex-col md:static fixed duration-300 md:h-auto  ${
