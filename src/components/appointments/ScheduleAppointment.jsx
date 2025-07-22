@@ -129,7 +129,7 @@ const ScheduleAppointment = () => {
               <option value="Surgery">Surgery</option>
               <option value="Grooming">Grooming</option>
             </select>
-            <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2">
+            <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 mt-[18px]">
               <img
                 src="/assets/images/svg/select-arrow.svg"
                 alt="arrow"
@@ -141,7 +141,7 @@ const ScheduleAppointment = () => {
             )}
           </div>
 
-          <div className="flex w-full gap-4">
+          <div className="flex max-sm:flex-col w-full gap-4">
             <div className="w-full">
               <CustomInput
                 name="date"
