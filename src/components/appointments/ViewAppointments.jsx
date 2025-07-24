@@ -1,11 +1,14 @@
 "use client";
 import React from "react";
 import { useAppointments } from "@/context/AppointmentsContext";
-import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const ViewAppointments = () => {
-  const { appointments } = useAppointments();
+  // const { appointments } = useAppointments();
+  // const latest = appointments[appointments.length - 1];
+  const { appointments, removeLatestAppointment } = useAppointments();
+  const router = useRouter();
   const latest = appointments[appointments.length - 1];
 
   if (!latest) {
@@ -15,9 +18,12 @@ const ViewAppointments = () => {
       </div>
     );
   }
-
+  const handleCancel = () => {
+    removeLatestAppointment();
+    router.push("/appointments/view"); // Refresh the view page
+  };
   return (
-    <div className="max-w-md mx-auto mt-10 p-4">
+    <div className="max-w-[800px] mx-auto mt-10 p-4">
       <h1 className="text-2xl md:text-3xl lg:text-4xl text-center mb-24 md:mb-20 font-titillium font-semibold text-blue-950">
         View Appointment
       </h1>
@@ -25,19 +31,27 @@ const ViewAppointments = () => {
         <div className="py-2 sm:py-3 rounded-lg border border-gray-300 text-dark-blue placeholder:text-dark-blue font-medium placeholder:fomt-medium text-lg placeholder:text-lg focus:outline-none">
           <div className="flex px-4 justify-between items-center pb-2">
             <div>
-              <p className="font-semibold">{latest.date}</p>
-              <p className="text-gray-600">{latest.time}</p>
+              <p className="font-semibold font-titillium text-lg">
+                {latest.date}
+              </p>
+              <p className="text-gray-600 font-titillium text-lg">
+                {latest.time}
+              </p>
             </div>
             <div className="text-right">
               <img
-                src="/assets/images/png/pet.png"
-                alt="pet"
-                className="rounded-full size-[60px] mx-auto animate-pulse"
+                src="/assets/images/svg/user.svg"
+                alt="user"
+                className="rounded-full size-[60px] mx-auto cursor-pointer"
               />
-              <p className="text-sm text-center font-medium">{latest.vet}</p>
+              <p className="text-lg capitalize text-center font-titillium font-medium">
+                {latest.vet}
+              </p>
             </div>
           </div>
-
+          <p className="text-lg font-semibold font-titillium text-dark-blue px-4">
+            📋 Type: <span className="font-normal">{latest.type}</span>
+          </p>
           <div className="pt-2">
             <p className="px-4 py-2 sm:py-3 border-t border-gray-300 text-dark-blue placeholder:text-dark-blue font-medium placeholder:fomt-medium text-lg placeholder:text-lg focus:outline-none">
               🐾 Pet: {latest.pet}
@@ -50,13 +64,16 @@ const ViewAppointments = () => {
             </p>
           </div>
         </div>
-          <Link
-            href="/appointments/overview"
-            className="bg-dark-blue text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border hover:border-dark-blue transition block text-center"
-          >
-            Accept Appointment
-          </Link>
-        <button className="bg-dark-blue text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border hover:border-dark-blue transition">
+        <Link
+          href="/appointments/overview"
+          className="bg-dark-blue text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border hover:border-dark-blue text-lg transition-all ease-linear duration-300 block text-center font-titillium font-medium"
+        >
+          Accept Appointment
+        </Link>
+        <button
+          onClick={handleCancel}
+          className="bg-red-700 text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border text-lg hover:border-red-700 transition-all ease-linear duration-300 font-titillium font-medium"
+        >
           Cancel
         </button>
       </div>
