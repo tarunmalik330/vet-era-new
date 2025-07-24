@@ -12,14 +12,6 @@ const ViewAppointments = () => {
     return (
       <div className="text-center mt-20 text-xl font-semibold text-gray-700">
         <p>No appointment found.</p>
-        <div className="mt-10">
-        <Link
-          href="/appointments/overview"
-          className="bg-blue-950 text-white font-titillium hover:text-black cursor-pointer px-6 py-2 rounded hover:bg-transparent transition border border-transparent hover:border-blue-950 text-sm md:text-base sm:py-3 duration-300"
-        >
-          Accept Appointment
-        </Link>
-        </div>
       </div>
     );
   }
@@ -58,7 +50,12 @@ const ViewAppointments = () => {
             </p>
           </div>
         </div>
-
+          <Link
+            href="/appointments/overview"
+            className="bg-dark-blue text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border hover:border-dark-blue transition block text-center"
+          >
+            Accept Appointment
+          </Link>
         <button className="bg-dark-blue text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border hover:border-dark-blue transition">
           Cancel
         </button>
