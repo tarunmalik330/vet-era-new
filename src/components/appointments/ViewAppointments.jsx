@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const ViewAppointments = () => {
   // const { appointments } = useAppointments();
   // const latest = appointments[appointments.length - 1];
-  const { appointments, removeLatestAppointment } = useAppointments();
+ const { appointments, cancelAppointment } = useAppointments();
   const router = useRouter();
   const latest = appointments[appointments.length - 1];
 
@@ -18,10 +18,11 @@ const ViewAppointments = () => {
       </div>
     );
   }
-  const handleCancel = () => {
-    removeLatestAppointment();
-    router.push("/appointments/view"); // Refresh the view page
-  };
+const handleCancel = () => {
+  cancelAppointment(latest.id);  // ✅ Mark it as cancelled, don't remove
+  router.push("/appointments/overview");
+};
+
   return (
     <div className="max-w-[800px] mx-auto mt-10 p-4">
       <h1 className="text-2xl md:text-3xl lg:text-4xl text-center mb-24 md:mb-20 font-titillium font-semibold text-blue-950">
