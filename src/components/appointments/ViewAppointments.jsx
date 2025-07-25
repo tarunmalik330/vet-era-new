@@ -4,10 +4,11 @@ import { useRouter } from "next/navigation";
 import { useAppointments } from "@/context/AppointmentsContext";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import Header from "../common/Header";
 
 const ViewAppointments = () => {
-  const router = useRouter();
   const { appointments, cancelAppointment } = useAppointments();
+  const router = useRouter();
   const latestIndex = appointments.length - 1;
   const latest = appointments[latestIndex];
 
@@ -38,69 +39,83 @@ const ViewAppointments = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         cancelAppointment(latestIndex);
-        Swal.fire("Cancelled!", "The appointment has been cancelled.", "success");
+        Swal.fire(
+          "Cancelled!",
+          "The appointment has been cancelled.",
+          "success"
+        );
       }
     });
   };
 
+  const handleAccept = () => {
+    router.push("/appointments/overview");
+  };
+
   return (
-    <div className="max-w-md mx-auto mt-10 p-4 relative">
-      {/* ❌ Close Icon */}
-      <button
-        className="absolute top-0 right-0 text-xl text-gray-500 hover:text-red-600"
-        onClick={() => router.push("/appointments/overview")}
-      >
-        ✖
-      </button>
+    <div>
+      <Header />
+      <div className="max-w-[800px] mx-auto mt-10 p-4 lg:p-6 relative">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl text-center mb-12 md:mb-16 font-titillium font-semibold text-blue-950">
+          View Appointment
+        </h1>
 
-      <h1 className="text-2xl md:text-3xl lg:text-4xl text-center mb-24 md:mb-20 font-titillium font-semibold text-blue-950">
-        View Appointment
-      </h1>
+        <div className="bg-white p-4 rounded-lg shadow space-y-4">
+          <div className="py-2 sm:py-3 rounded-lg border border-gray-300">
+            <div className="flex px-4 justify-between items-center pb-2">
+              <div>
+                <p className="font-semibold font-titillium text-lg">
+                  {latest.date}
+                </p>
+                <p className="text-gray-600 font-titillium text-lg">
+                  {latest.time}
+                </p>
+              </div>
+              <div className="text-right">
+                <img
+                  src="/assets/images/svg/user.svg"
+                  alt="user"
+                  className="rounded-full size-[60px] mx-auto cursor-pointer"
+                />
+                <p className="text-lg capitalize text-center font-titillium font-medium">
+                  {latest.vet}
+                </p>
+              </div>
+            </div>
 
-      <div className="bg-white p-4 rounded-lg shadow space-y-4">
-        <div className="py-2 sm:py-3 rounded-lg border border-gray-300">
-          <div className="flex px-4 justify-between items-center pb-2">
-            <div>
-              <p className="font-semibold font-titillium text-lg">
-                {latest.date}
-              </p>
-              <p className="text-gray-600 font-titillium text-lg">
-                {latest.time}
-              </p>
-            </div>
-            <div className="text-right">
-              <img
-                src="/assets/images/svg/user.svg"
-                alt="user"
-                className="rounded-full size-[60px] mx-auto cursor-pointer"
-              />
-              <p className="text-lg capitalize text-center font-titillium font-medium">
-                {latest.vet}
-              </p>
-            </div>
+            <p className="px-4 pt-2 text-lg font-medium border-t border-gray-300 py-2">
+              📋 Type: {latest.type}
+            </p>
+            <p className="px-4 py-2 border-t border-gray-300 text-lg font-medium">
+              🐾 Pet: {latest.pet}
+            </p>
+
+            <p className="px-4 pt-2 border-t border-gray-300 text-lg font-medium">
+              🩺 Concern: {latest.concern}
+            </p>
           </div>
 
-          <p className="px-4 py-2 border-t border-gray-300 text-lg font-medium">
-            🐾 Pet: {latest.pet}
-          </p>
-
-          <p className="px-4 pt-2 border-t border-gray-300 text-lg font-medium">
-            🩺 Concern: {latest.concern}
-          </p>
+          {latest.status === "Cancelled" ? (
+            <p className="text-red-500 text-center font-semibold">
+              This appointment has been cancelled.
+            </p>
+          ) : (
+            <>
+              <button
+                onClick={handleAccept}
+                className="bg-dark-blue text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border hover:border-dark-blue text-lg transition-all ease-linear duration-300 block text-center font-titillium font-medium"
+              >
+                Accept Appointment
+              </button>
+              <button
+                onClick={handleCancel}
+                className="bg-red-700 text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border text-lg hover:border-red-700 transition-all ease-linear duration-300 font-titillium font-medium"
+              >
+                Cancel
+              </button>
+            </>
+          )}
         </div>
-
-        {latest.status === "Cancelled" ? (
-          <p className="text-red-500 text-center font-semibold">
-            This appointment has been cancelled.
-          </p>
-        ) : (
-          <button
-            onClick={handleCancel}
-            className="bg-blue-950 text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-blue-950 border hover:border-blue-950 transition"
-          >
-            Cancel
-          </button>
-        )}
       </div>
     </div>
   );

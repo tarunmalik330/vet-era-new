@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "@/components/common/Header";
 import Services from "@/components/home/Services";
-import Overview from "@/components/appointments/Overview";
 
 const HomePage = () => {
   const router = useRouter();
@@ -24,7 +23,6 @@ const HomePage = () => {
     <div>
       <Header />
       <Services />
-      <Overview/>
     </div>
   );
 };
