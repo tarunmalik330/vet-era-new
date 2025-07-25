@@ -17,18 +17,17 @@ const Overview = () => {
   const past = appointments.filter(a => new Date(a.date) < now && a.status !== "Cancelled").length;
 
   return (
-    <div className="max-w-[900px] rounded-xl mx-auto shadow-xl bg-white py-8">
+    <div className="max-w-[760px] rounded-xl mx-auto shadow-xl bg-white py-8">
       {/* Navbar */}
       <nav className="flex justify-between px-10 pb-2 border-b rounded-t-xl border-gray-400 items-center mb-10">
         <div className="flex items-center space-x-2">
           <Link href="/" className="relative">
             <img src="/assets/images/png/logo.png" alt="logo" width={60} height={50} />
           </Link>
-          <span className="font-bold text-xl text-blue-950 font-titillium">VetEra</span>
         </div>
         <ul className="flex space-x-6 font-medium text-gray-800">
           <li><Link href="#" className="font-semibold text-black">Dashboard</Link></li>
-          <li><Link href="#">Schedule</Link></li>
+          <li><Link href="/appointments/schedule">Schedule</Link></li>
           <li><Link href="#">Patients</Link></li>
         </ul>
       </nav>
@@ -40,7 +39,7 @@ const Overview = () => {
         </h1>
         <div className="flex flex-wrap gap-4">
           <Link href="/appointments/schedule">
-            <button className="bg-blue-950 text-white px-5 py-3 rounded-md flex items-center space-x-2 text-sm hover:bg-blue-900">
+            <button className="bg-blue-950 text-white px-5 py-3 rounded-md flex items-center space-x-2 text-sm duration-300 hover:bg-blue-900">
               <FaClipboardList />
               <span>New Appointment</span>
             </button>
@@ -94,8 +93,8 @@ const OverviewCard = ({ title, value, Icon }) => (
       <Icon className="text-blue-950 text-xl" />
     </div>
     <div>
-      <p className="text-sm font-semibold text-gray-800">{title}</p>
-      <p className="text-xl font-bold text-blue-950">{value}</p>
+      <p className="text-xl font-semibold text-gray-800">{title}</p>
+      <p className="text-2xl font-bold text-blue-950">{value}</p>
     </div>
   </div>
 );

@@ -1,33 +1,50 @@
-"use client"
+"use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-const AppointmentContext = createContext();
+const AppointmentsContext = createContext();
 
-export const useAppointments = () => useContext(AppointmentContext);
+export const useAppointments = () => useContext(AppointmentsContext);
 
-export const AppointmentProvider = ({ children }) => {
+export const AppointmentsProvider = ({ children }) => {
   const [appointments, setAppointments] = useState([]);
 
-  // Load from localStorage when component mounts
+  // Load appointments from localStorage on mount
   useEffect(() => {
-    const storedAppointments = localStorage.getItem("appointments");
-    if (storedAppointments) {
-      setAppointments(JSON.parse(storedAppointments));
+    try {
+      const stored = localStorage.getItem("appointments");
+      if (stored) {
+        setAppointments(JSON.parse(stored));
+      }
+    } catch (e) {
+      console.error("Failed to load appointments from localStorage", e);
     }
   }, []);
 
-  // Save to localStorage whenever appointments change
+  // Save appointments to localStorage when they change
   useEffect(() => {
     localStorage.setItem("appointments", JSON.stringify(appointments));
   }, [appointments]);
 
   const addAppointment = (appointment) => {
-    setAppointments((prev) => [...prev, appointment]);
+    const newAppointment = {
+      ...appointment,
+      status: "Pending",
+      createdAt: new Date().toISOString(),
+    };
+    setAppointments((prev) => [...prev, newAppointment]);
+  };
+
+  const cancelAppointment = (index) => {
+    setAppointments((prev) =>
+      prev.map((a, i) => (i === index ? { ...a, status: "Cancelled" } : a))
+    );
   };
 
   return (
-    <AppointmentContext.Provider value={{ appointments, addAppointment }}>
+    <AppointmentsContext.Provider
+      value={{ appointments, addAppointment, cancelAppointment }}
+    >
       {children}
-    </AppointmentContext.Provider>
+    </AppointmentsContext.Provider>
   );
 };
