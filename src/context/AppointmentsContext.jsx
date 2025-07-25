@@ -1,18 +1,22 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-const AppointmentContext = createContext();
+const AppointmentsContext = createContext();
 
-export const useAppointments = () => useContext(AppointmentContext);
+export const useAppointments = () => useContext(AppointmentsContext);
 
-export const AppointmentProvider = ({ children }) => {
+export const AppointmentsProvider = ({ children }) => {
   const [appointments, setAppointments] = useState([]);
 
   // Load appointments from localStorage on mount
   useEffect(() => {
-    const storedAppointments = localStorage.getItem("appointments");
-    if (storedAppointments) {
-      setAppointments(JSON.parse(storedAppointments));
+    try {
+      const stored = localStorage.getItem("appointments");
+      if (stored) {
+        setAppointments(JSON.parse(stored));
+      }
+    } catch (e) {
+      console.error("Failed to load appointments from localStorage", e);
     }
   }, []);
 
@@ -25,32 +29,23 @@ export const AppointmentProvider = ({ children }) => {
   const addAppointment = (appointment) => {
     const newAppointment = {
       ...appointment,
-      id: Date.now(),
-      status: "Upcoming",
+      status: "Pending",
+      createdAt: new Date().toISOString(),
     };
     setAppointments((prev) => [...prev, newAppointment]);
   };
 
-  // Cancel an appointment (mark as Cancelled)
-  const cancelAppointment = (id) => {
+  const cancelAppointment = (index) => {
     setAppointments((prev) =>
-      prev.map((appointment) =>
-        appointment.id === id
-          ? { ...appointment, status: "Cancelled" }
-          : appointment
-      )
+      prev.map((a, i) => (i === index ? { ...a, status: "Cancelled" } : a))
     );
   };
 
   return (
-    <AppointmentContext.Provider
-      value={{
-        appointments,
-        addAppointment,
-        cancelAppointment,
-      }}
+    <AppointmentsContext.Provider
+      value={{ appointments, addAppointment, cancelAppointment }}
     >
       {children}
-    </AppointmentContext.Provider>
+    </AppointmentsContext.Provider>
   );
 };

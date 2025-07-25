@@ -1,4 +1,4 @@
-import { AppointmentProvider } from "@/context/AppointmentsContext";
+import { AppointmentsProvider } from "@/context/AppointmentsContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
@@ -48,9 +48,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+   <html lang="en">
       <body>
-        <AppointmentProvider>{children}</AppointmentProvider>
+        <AppointmentsProvider>
+          {children}
+        </AppointmentsProvider>
         <ToastContainer position="top-right" autoClose={3000} />
       </body>
     </html>

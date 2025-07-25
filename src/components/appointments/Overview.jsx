@@ -1,121 +1,102 @@
 "use client";
 import React from "react";
 import { useAppointments } from "@/context/AppointmentsContext";
-import { useRouter } from "next/navigation";
-import Header from "../common/Header";
+import { FaClipboardList, FaClock } from "react-icons/fa";
+import { BsCalendar2Check, BsCalendarX } from "react-icons/bs";
+import Link from "next/link";
 
 const Overview = () => {
   const { appointments } = useAppointments();
-  const router = useRouter();
 
-  const today = new Date();
+  // Get current date and categorize appointments
+  const now = new Date();
 
-  const totalAppointments = appointments.length;
-
-  const upcomingAppointments = appointments.filter((appointment) => {
-    const appointmentDate = new Date(`${appointment.date}T${appointment.time}`);
-    return appointmentDate > today && appointment.status !== "Cancelled";
-  });
-
-  const pastAppointments = appointments.filter((appointment) => {
-    const appointmentDate = new Date(`${appointment.date}T${appointment.time}`);
-    return appointmentDate < today && appointment.status !== "Cancelled";
-  });
-
-  const cancelledAppointments = appointments.filter(
-    (appointment) => appointment.status === "Cancelled"
-  );
-
-  const sortedAppointments = [...appointments].sort((a, b) => {
-    return new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`);
-  });
+  const total = appointments.length;
+  const cancelled = appointments.filter(a => a.status === "Cancelled").length;
+  const upcoming = appointments.filter(a => new Date(a.date) > now && a.status === "Pending").length;
+  const past = appointments.filter(a => new Date(a.date) < now && a.status !== "Cancelled").length;
 
   return (
-    <div>
-      <Header />
-      <div className="max-w-[1140px] mx-auto px-4 pt-20 pb-10">
-        <h1 className="text-3xl font-bold text-blue-950 mb-8">
-          Appointment Overview
-        </h1>
-
-        {/* Summary cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          <div className="bg-blue-100 text-blue-900 p-4 rounded-lg shadow text-center">
-            <p className="text-lg font-medium">Total</p>
-            <p className="text-2xl font-bold">{totalAppointments}</p>
-          </div>
-          <div className="bg-green-100 text-green-900 p-4 rounded-lg shadow text-center">
-            <p className="text-lg font-medium">Upcoming</p>
-            <p className="text-2xl font-bold">{upcomingAppointments.length}</p>
-          </div>
-          <div className="bg-yellow-100 text-yellow-900 p-4 rounded-lg shadow text-center">
-            <p className="text-lg font-medium">Past</p>
-            <p className="text-2xl font-bold">{pastAppointments.length}</p>
-          </div>
-          <div className="bg-red-100 text-red-900 p-4 rounded-lg shadow text-center">
-            <p className="text-lg font-medium">Cancelled</p>
-            <p className="text-2xl font-bold">{cancelledAppointments.length}</p>
-          </div>
+    <div className="max-w-[760px] rounded-xl mx-auto shadow-xl bg-white py-8">
+      {/* Navbar */}
+      <nav className="flex justify-between px-10 pb-2 border-b rounded-t-xl border-gray-400 items-center mb-10">
+        <div className="flex items-center space-x-2">
+          <Link href="/" className="relative">
+            <img src="/assets/images/png/logo.png" alt="logo" width={60} height={50} />
+          </Link>
         </div>
+        <ul className="flex space-x-6 font-medium text-gray-800">
+          <li><Link href="#" className="font-semibold text-black">Dashboard</Link></li>
+          <li><Link href="/appointments/schedule">Schedule</Link></li>
+          <li><Link href="#">Patients</Link></li>
+        </ul>
+      </nav>
 
-        {/* Appointments Table */}
-        <div className="overflow-x-auto bg-white rounded-lg shadow">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  Pet
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  Owner
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  Date
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  Time
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  Status
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {sortedAppointments.length === 0 ? (
-                <tr>
-                  <td colSpan="5" className="text-center py-6 text-gray-500">
-                    No appointments found.
-                  </td>
-                </tr>
-              ) : (
-                sortedAppointments.map((appointment, index) => {
-                  const isCancelled = appointment.status === "Cancelled";
-                  return (
-                    <tr
-                      key={index}
-                      className={`hover:bg-gray-50 ${
-                        isCancelled ? "bg-red-50 text-red-700" : ""
-                      }`}
-                    >
-                      <td className="px-4 py-3">{appointment.pet}</td>
-                      <td className="px-4 py-3">
-                        {appointment.ownerName || "N/A"}
-                      </td>
-                      <td className="px-4 py-3">{appointment.date}</td>
-                      <td className="px-4 py-3">{appointment.time}</td>
-                      <td className="px-4 py-3 font-semibold">
-                        {isCancelled ? "❌ Cancelled" : "✅ Confirmed"}
-                      </td>
-                    </tr>
-                  );
-                })
-              )}
-            </tbody>
-          </table>
+      {/* Welcome Section */}
+      <div className="mb-8 px-10">
+        <h1 className="text-3xl md:text-4xl font-bold text-blue-950 mb-6 font-titillium">
+          Welcome, Dr. Smith
+        </h1>
+        <div className="flex flex-wrap gap-4">
+          <Link href="/appointments/schedule">
+            <button className="bg-blue-950 text-white px-5 py-3 rounded-md flex items-center space-x-2 text-sm duration-300 hover:bg-blue-900">
+              <FaClipboardList />
+              <span>New Appointment</span>
+            </button>
+          </Link>
+          <button className="border border-gray-300 px-5 py-2 rounded-md flex items-center space-x-2 text-sm hover:bg-gray-100">
+            <span className="text-lg font-bold">+</span>
+            <span>Add Patient</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Appointments Overview */}
+      <div className="px-10">
+        <h2 className="text-xl font-bold text-gray-900 mb-6 font-titillium">Appointments Overview</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 mb-6 gap-6">
+          {/* Past Appointments */}
+          <OverviewCard
+            title="Past Appointments"
+            value={past}
+            Icon={BsCalendarX}
+          />
+          {/* Cancellations */}
+          <OverviewCard
+            title="Cancellations"
+            value={cancelled}
+            Icon={FaClock}
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Total Appointments */}
+          <OverviewCard
+            title="Total Appointments"
+            value={total}
+            Icon={FaClipboardList}
+          />
+          {/* Upcoming Appointments */}
+          <OverviewCard
+            title="Upcoming Appointments"
+            value={upcoming}
+            Icon={BsCalendar2Check}
+          />
         </div>
       </div>
     </div>
   );
 };
+
+const OverviewCard = ({ title, value, Icon }) => (
+  <div className="border border-gray-200 rounded-lg p-4 flex items-center space-x-4 shadow-sm hover:shadow-md transition">
+    <div className="bg-gray-100 p-3 rounded">
+      <Icon className="text-blue-950 text-xl" />
+    </div>
+    <div>
+      <p className="text-xl font-semibold text-gray-800">{title}</p>
+      <p className="text-2xl font-bold text-blue-950">{value}</p>
+    </div>
+  </div>
+);
 
 export default Overview;
