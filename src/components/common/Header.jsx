@@ -20,7 +20,12 @@ const Header = () => {
       <div className="container xl:max-w-[1140px] 2xl:max-w-[1440px] mx-auto xl:px-0 px-5 w-full">
         <nav className="flex items-center justify-between">
           <Link href="/" className="relative">
-            <img src="/assets/images/png/logo.png" alt="logo" width={60} height={50} />
+            <img
+              src="/assets/images/png/logo.png"
+              alt="logo"
+              width={60}
+              height={50}
+            />
           </Link>
           <div
             className={`flex items-center md:flex-row flex-col md:static z-50 fixed transition-all ease-linear duration-300 md:h-auto  ${

@@ -1,10 +1,10 @@
-import RoleSelection from "@/components/signup/RoleSelection";
+import PetOwnerSignup from "@/components/signup/PetOwnerSignup";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <RoleSelection />
+      <PetOwnerSignup />
     </div>
   );
 };
