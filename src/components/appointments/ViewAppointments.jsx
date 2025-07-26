@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useAppointments } from "@/context/AppointmentsContext";
 import Swal from "sweetalert2";
 import Link from "next/link";
-import Header from "../common/Header";
 
 const ViewAppointments = () => {
   const { appointments, cancelAppointment } = useAppointments();
@@ -53,15 +52,13 @@ const ViewAppointments = () => {
   };
 
   return (
-    <div>
-      <Header />
       <div className="max-w-[800px] mx-auto mt-10 p-4 lg:p-6 relative">
         <h1 className="text-2xl md:text-3xl lg:text-4xl text-center mb-12 md:mb-16 font-titillium font-semibold text-blue-950">
           View Appointment
         </h1>
 
         <div className="bg-white p-4 rounded-lg shadow space-y-4">
-          <div className="py-2 sm:py-3 rounded-lg border border-gray-300">
+          <div className="py-3 sm:py-4 rounded-lg border border-gray-300">
             <div className="flex px-4 justify-between items-center pb-2">
               <div>
                 <p className="font-semibold font-titillium text-lg">
@@ -83,14 +80,14 @@ const ViewAppointments = () => {
               </div>
             </div>
 
-            <p className="px-4 pt-2 text-lg font-medium border-t border-gray-300 py-2">
+            <p className="px-4 text-lg font-medium border-t border-gray-300 py-3">
               📋 Type: {latest.type}
             </p>
-            <p className="px-4 py-2 border-t border-gray-300 text-lg font-medium">
+            <p className="px-4 py-3 border-t border-gray-300 text-lg font-medium">
               🐾 Pet: {latest.pet}
             </p>
 
-            <p className="px-4 pt-2 border-t border-gray-300 text-lg font-medium">
+            <p className="px-4 pt-3 border-t border-gray-300 text-lg font-medium">
               🩺 Concern: {latest.concern}
             </p>
           </div>
@@ -103,13 +100,13 @@ const ViewAppointments = () => {
             <>
               <button
                 onClick={handleAccept}
-                className="bg-dark-blue text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border hover:border-dark-blue text-lg transition-all ease-linear duration-300 block text-center font-titillium font-medium"
+                className="bg-dark-blue text-white cursor-pointer px-6 py-2 rounded-lg w-full  border hover:bg-dark-blue/90 text-lg transition-all ease-linear duration-300 block text-center font-titillium font-medium"
               >
                 Accept Appointment
               </button>
               <button
                 onClick={handleCancel}
-                className="bg-red-700 text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-transparent hover:text-dark-blue border text-lg hover:border-red-700 transition-all ease-linear duration-300 font-titillium font-medium"
+                className="bg-red-800 text-white cursor-pointer px-6 py-2 rounded-lg w-full hover:bg-red-700/90 border text-lg transition-all ease-linear duration-300 font-titillium font-medium"
               >
                 Cancel
               </button>
@@ -117,7 +114,6 @@ const ViewAppointments = () => {
           )}
         </div>
       </div>
-    </div>
   );
 };
 

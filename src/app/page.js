@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Header from "@/components/common/Header";
 import Services from "@/components/home/Services";
 
 const HomePage = () => {
@@ -13,7 +12,7 @@ const HomePage = () => {
     if (!loggedIn) {
       router.replace("/login");
     } else {
-      setIsAuthenticated(true); // allow page to render
+      setIsAuthenticated(true); 
     }
   }, [router]);
 
@@ -21,7 +20,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <Header />
       <Services />
     </div>
   );

@@ -64,3 +64,17 @@ body {
   animation: typewriter-loop 9s steps(30, end) infinite,
     blinkCaret 0.9s step-end infinite;
 }
+/* =-=-=-=-=-=-=-=scrolllbar=-=-=-=-=-=-=-= */
+/* Style the scrollbar track */
+::-webkit-scrollbar {
+  width: 12px; 
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #001f3f;
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}

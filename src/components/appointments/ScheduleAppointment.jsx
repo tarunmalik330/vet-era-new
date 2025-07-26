@@ -184,7 +184,7 @@ const ScheduleAppointment = () => {
 
           <button
             type="submit"
-            className="bg-blue-950 text-white cursor-pointer px-6 py-2 rounded hover:bg-transparent hover:text-black border hover:border-blue-950 transition"
+            className="bg-dark-blue text-white cursor-pointer px-6 py-2 rounded border hover:border-blue-950 transition-all ease-linear duration-300 hover:bg-dark-blue/90"
           >
             Confirm Appointment
           </button>
