@@ -23,8 +23,7 @@ const Header = () => {
             <img
               src="/assets/images/png/logo.png"
               alt="logo"
-              width={60}
-              height={50}
+              className="max-w-[60px] w-full h-[50px]"
             />
           </Link>
           <div

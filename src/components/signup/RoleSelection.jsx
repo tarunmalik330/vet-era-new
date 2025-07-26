@@ -50,7 +50,7 @@ const RoleSelection = () => {
             Already have an account?{" "}
             <button
               onClick={() => router.push("/login")}
-              className="text-dark-blue hover:underline font-medium"
+              className="text-dark-blue cursor-pointer hover:underline font-medium"
             >
               Sign In
             </button>

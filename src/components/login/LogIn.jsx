@@ -26,7 +26,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center px-5">
+    <div className="py-20 sm:min-h-screen flex justify-center items-center px-5">
       <div className="py-7 p-4 sm:p-6 lg:p-8 rounded-2xl md:rounded-3xl border border-solid border-gray-500 shadow-2xl w-full max-w-[650px] hover:border-transparent transition-all ease-linear duration-300">
         <h1 className="font-titillium text-blue-950 text-5xl lg:text-6xl xl:text-8xl font-semibold tracking-[1px] text-center mb-5 md:mb-7">
           VetEra
